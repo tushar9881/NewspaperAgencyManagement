@@ -23,3 +23,4 @@ Thumbs.db
 # === Others ===
 .env
 *.bak
+Backend/NewspaperAgency/src/main/resources/application.properties
