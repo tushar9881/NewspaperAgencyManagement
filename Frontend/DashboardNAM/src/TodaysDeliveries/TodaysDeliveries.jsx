@@ -7,7 +7,7 @@ const TodaysDeliveries = ({ deliveryExecutiveId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/deliveries/today/${deliveryExecutiveId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/deliveries/today/${deliveryExecutiveId}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

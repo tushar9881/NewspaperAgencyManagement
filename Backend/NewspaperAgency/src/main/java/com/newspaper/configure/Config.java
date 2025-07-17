@@ -1,5 +1,6 @@
 package com.newspaper.configure;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -7,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class Config {
+	
+	@Value("${frontend.url}")
+    private String frontendUrl;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -14,7 +18,7 @@ public class Config {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // applies to all paths
-                        .allowedOrigins("http://localhost:5173") // your frontend origin
+                        .allowedOrigins(frontendUrl) // your frontend origin
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true); // only if using cookies/auth

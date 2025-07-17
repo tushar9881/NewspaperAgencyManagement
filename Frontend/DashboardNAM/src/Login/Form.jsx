@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {Box,Button,Paper,TextField,Typography} from '@mui/material';
 
@@ -12,7 +13,7 @@ const Form = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('http://localhost:8080/user/login', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userName, password })
@@ -95,7 +96,7 @@ const Form = () => {
               {error && (
                 <Typography color="error" sx={{ mt: 1 }}>{error}</Typography>
               )}
-              <Button fullWid variant="contained" color="primary" type="submit" sx={{ mt: 2 }}> Sign In</Button>
+              <Button fullWidth variant="contained" color="primary" type="submit" sx={{ mt: 2 }}> Sign In</Button>
 
           </Box>
 

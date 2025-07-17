@@ -23,7 +23,7 @@ const CustomerTab = () => {
 
 
   const fetchCustomers = async () => {
-    const res = await fetch('http://localhost:8080/api/admin/customers');
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/customers`);
     const data = await res.json();
     setCustomers(data);
     setFiltered(data);
@@ -67,8 +67,8 @@ const CustomerTab = () => {
   const handleSave = async () => {
     const method = formMode === 'onboard' ? 'POST' : 'PUT';
     const url = formMode === 'onboard'
-      ? 'http://localhost:8080/api/admin/onboardcustomer'
-      : `http://localhost:8080/api/admin/${updateid}`;
+      ? `${import.meta.env.VITE_API_URL}/api/admin/onboardcustomer`
+      : `${import.meta.env.VITE_API_URL}/api/admin/${updateid}`;
 
     await fetch(url, {
       method,
@@ -82,7 +82,7 @@ const CustomerTab = () => {
 
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:8080/api/admin/${deleteid}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/admin/${deleteid}`, {
       method: 'DELETE',
     });
     setConfirmDelete(false);

@@ -27,7 +27,7 @@ const DeliveryExecutiveTab = () => {
   }, []);
 
   const fetchExecutives = async () => {
-    const res = await fetch('http://localhost:8080/api/admin/delivery_executive');
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/delivery_executive`);
     const data = await res.json();
     console.log("API Response:", data);
     setExecutives(data);
@@ -79,8 +79,8 @@ const DeliveryExecutiveTab = () => {
     console.log("Payload being sent:", payload);
     const url =
       formMode === 'onboard'
-        ? 'http://localhost:8080/api/admin/onboardDeliveryExecutive'
-        : `http://localhost:8080/api/admin/deliveryexecutive/${updateDEid.userId}`;
+        ? `${import.meta.env.VITE_API_URL}/api/admin/onboardDeliveryExecutive`
+        : `${import.meta.env.VITE_API_URL}/api/admin/deliveryexecutive/${updateDEid.userId}`;
 
     const method = formMode === 'onboard' ? 'POST' : 'PUT';
 
@@ -95,7 +95,7 @@ const DeliveryExecutiveTab = () => {
 
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:8080/api/admin/deliveryexecutive/${executiveToDelete.userId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/admin/deliveryexecutive/${executiveToDelete.userId}`, {
       method: 'DELETE',
     });
 

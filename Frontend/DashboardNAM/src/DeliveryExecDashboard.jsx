@@ -31,7 +31,7 @@ const DeliveryExecutiveDashboard = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/deliveries/create?userId=${customerId}&deliveryExecutiveId=${deliveryExecutiveId}`,
+        `${import.meta.env.VITE_API_URL}/deliveries/create?userId=${customerId}&deliveryExecutiveId=${deliveryExecutiveId}`,
         { method: 'POST' }
       );
       const newDelivery = await res.json();

@@ -23,21 +23,21 @@ function CustomerDashboard() {
 
   useEffect(() => {
     if (storedUser?.id) {
-      fetch(`http://localhost:8080/api/customer/${storedUser.id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/customer/${storedUser.id}`)
         .then(res => res.json())
         .then(data => {
           setCustomer(data);
           setFormData(data);
         });
 
-      fetch(`http://localhost:8080/api/customer/subscriptions/my/${storedUser.userName}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/customer/subscriptions/my/${storedUser.userName}`)
         .then(res => res.json())
         .then(data => setSubscriptions(data));
     }
   }, [storedUser?.id]);
 
   const handleUpdate = () => {
-    fetch(`http://localhost:8080/api/customer/updateinfo`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/customer/updateinfo`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -52,7 +52,7 @@ function CustomerDashboard() {
   useEffect(() => {
     const fetchTodaysDeliveries = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/customer/deliveries/today/customer/${storedUser.id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/deliveries/today/customer/${storedUser.id}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

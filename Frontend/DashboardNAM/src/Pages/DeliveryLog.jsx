@@ -27,8 +27,8 @@ const DeliveryLog = () => {
       try {
         const endpoint =
           activeTab === 'delivered'
-            ? `http://localhost:8080/api/admin/by-date?date=${selectedDate}`
-            : `http://localhost:8080/api/admin/no-deliveries?date=${selectedDate}`;
+            ? `${import.meta.env.VITE_API_URL}/api/admin/by-date?date=${selectedDate}`
+            : `${import.meta.env.VITE_API_URL}/api/admin/no-deliveries?date=${selectedDate}`;
 
         const res = await fetch(endpoint);
         const data = await res.ok ? await res.json() : [];
